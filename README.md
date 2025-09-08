@@ -40,3 +40,56 @@ $$\sum_{i=1}^{n} k_i = \dim(S) = d$$
 
 For example:
 $$(160 \text{ topics}) + (130 \text{ tone}) + \cdots + (k_n \text{ noise}) = 1536$$
+
+---
+
+## Multi-Layer Preference Scoring Algorithm
+
+This algorithm takes a small set of items a user likes and produces a detailed "preference profile" broken down by each of the decomposed layers (topic, tone, etc.).
+
+#### **Phase 1: Pre-computation (Done Once, Offline)**
+
+Before any user interacts with the system, the N-Step Decomposition Algorithm must be completed. The essential outputs required from that process are the **basis vectors** for each layer:
+* $A^{(1)} \in \mathbb{R}^{k_1 \times d}$ (Topic Basis)
+* $A^{(2)} \in \mathbb{R}^{k_2 \times d}$ (Tone Basis)
+* ...
+* $A^{(n)} \in \mathbb{R}^{k_n \times d}$ (Final Layer Basis)
+
+These matrices serve as the measurement framework for user preferences.
+
+#### **Phase 2: Preference Scoring (Done Per User, Real-time)**
+
+**1. Collect User Input**
+* A user selects a small number, $m$, of content pieces they like (e.g., $m=5$).
+* Retrieve their corresponding raw embeddings to form a matrix $E_{\text{user}} \in \mathbb{R}^{m \times d}$.
+
+**2. Calculate Global Preference Vector ($w_{\text{global}}$)**
+* Average the embeddings of the user's chosen items to create a single **global preference vector**. This vector represents the center of the user's taste in the high-dimensional embedding space.
+    $$w_{\text{global}} = \frac{1}{m} \sum_{j=1}^{m} E_{\text{user}}[j, :]$$
+* The result is a single vector $w_{\text{global}} \in \mathbb{R}^{d}$.
+
+**3. Project Preference Vector onto Each Layer**
+* Measure how this global preference vector aligns with each of the predefined layers. For each layer $i = 1, 2, ..., n$:
+    * Calculate the **preference scores** for that layer, $s^{(i)}$, by taking the dot product of the global preference vector with the transpose of that layer's basis matrix, $A^{(i)}$.
+        $$s^{(i)} = w_{\text{global}} \cdot (A^{(i)})^T$$
+* This step decomposes the user's single preference vector into a set of score vectors.
+
+#### **Final Output**
+
+The output is a **user preference profile**, which is a set of score vectors: $\{s^{(1)}, s^{(2)}, ..., s^{(n)}\}$.
+* $s^{(1)} \in \mathbb{R}^{k_1}$: The user's scores for each of the $k_1$ topic axes.
+* $s^{(2)} \in \mathbb{R}^{k_2}$: The user's scores for each of the $k_2$ tone axes.
+* ...and so on.
+
+#### **Content Recommendation**
+
+Once a user's preference profile is established, it can be used to recommend new content:
+
+**1. Score New Content**: For any new post with embedding $e_{\text{new}}$, calculate its scores for each layer:
+    * Topic Scores: $c^{(1)} = e_{\text{new}} \cdot (A^{(1)})^T$
+    * Tone Scores: $c^{(2)} = e_{\text{new}} \cdot (A^{(2)})^T$
+    * ...and so on.
+
+**2. Measure Similarity**: Recommend content where the content's score profile $\{c^{(1)}, c^{(2)}, ...\}$ is most similar to the user's preference profile $\{s^{(1)}, s^{(2)}, ...\}$. Similarity can be calculated for each layer (e.g., using cosine similarity between $c^{(1)}$ and $s^{(1)}$) and then combined into an overall recommendation score.
+
+This approach enables explainable recommendations by identifying which specific layers (topic, tone, etc.) drive the recommendation.
