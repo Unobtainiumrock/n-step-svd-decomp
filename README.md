@@ -1,5 +1,4 @@
-
-N-Step Orthogonal Decomposition Algorithm
+# N-Step Orthogonal Decomposition Algorithm
 
 #### **Initialization**
 
