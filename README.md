@@ -93,3 +93,6 @@ Once a user's preference profile is established, it can be used to recommend new
 **2. Measure Similarity**: Recommend content where the content's score profile $\{c^{(1)}, c^{(2)}, ...\}$ is most similar to the user's preference profile $\{s^{(1)}, s^{(2)}, ...\}$. Similarity can be calculated for each layer (e.g., using cosine similarity between $c^{(1)}$ and $s^{(1)}$) and then combined into an overall recommendation score.
 
 This approach enables explainable recommendations by identifying which specific layers (topic, tone, etc.) drive the recommendation.
+
+Train individual VAEs
+use k different VAEs to learn the different represenatation of the same embedding vector, and now you can use the different VAEs representation for the  semantic matching 
