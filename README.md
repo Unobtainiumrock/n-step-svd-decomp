@@ -1,4 +1,40 @@
-# N-Step Orthogonal Decomposition Algorithm
+# Face ID for Tone
+
+**Discovering content preferences through residualized embedding spaces**
+
+A full-stack system that decomposes 1,536-dimensional OpenAI embeddings using SVD to separate topic from tone. The "residualized tone space" isolates stylistic preferences independent of subject matter. A 9-round convergent A/B testing interface calibrates user preferences across 80k+ posts, using Pinecone for vector search and Supabase for real-time state.
+
+## Key Features
+
+- **Novel SVD decomposition**: 160 topic + 130 tone dimensions from 1,536D embeddings
+- **Residualized tone space** eliminates topic bias from preference signal
+- **Interactive convergent search** with 9-round A/B calibration
+- **80k+ post corpus** with real-time vector similarity search
+
+## Tech Stack
+
+Python | FastAPI | React | OpenAI Embeddings | SVD/PCA | Pinecone | Supabase
+
+## Dataset
+
+The system operates on a corpus of **80,000+ posts**, each embedded into 1,536-dimensional vectors via OpenAI's embedding API. These embeddings serve as the input to the SVD decomposition pipeline described below. The dataset is not included in this repository due to size constraints and API usage considerations, but the decomposition algorithm and preference scoring system are fully described here and implemented in the companion application.
+
+## A Note on Machine Learning
+
+This project deliberately avoids traditional ML classifiers (neural networks, gradient-boosted trees, etc.) for preference discovery. Instead, it relies entirely on **linear algebraic decomposition** (SVD) and **geometric operations** (projection, residualization) in embedding space.
+
+The rationale:
+
+1. **Interpretability**: Each SVD component corresponds to a concrete, orthogonal subspace with a semantic label (topic, tone, etc.). There are no opaque learned weights to interpret.
+2. **Sample efficiency**: The preference scoring algorithm (Phase 2 below) works from as few as 5 user selections. ML models typically require orders of magnitude more labeled data to learn meaningful preference signals.
+3. **Composability**: Because the decomposition produces orthogonal subspaces, preference scores for topic and tone are genuinely independent. An ML model trained end-to-end would entangle these signals, making it impossible to ask "does this user like the *tone* of this post, regardless of topic?"
+4. **No training loop**: The SVD is computed once offline. User preference profiles are computed in real-time via matrix-vector products -- no model retraining, no drift, no feedback loops.
+
+A future direction could involve training individual VAEs per subspace to learn nonlinear representations within each decomposed layer (see the end of this document), but the current system demonstrates that meaningful preference separation is achievable with purely linear methods.
+
+---
+
+## N-Step Orthogonal Decomposition Algorithm
 
 #### **Initialization**
 
@@ -94,5 +130,8 @@ Once a user's preference profile is established, it can be used to recommend new
 
 This approach enables explainable recommendations by identifying which specific layers (topic, tone, etc.) drive the recommendation.
 
-Train individual VAEs
-use k different VAEs to learn the different represenatation of the same embedding vector, and now you can use the different VAEs representation for the  semantic matching 
+---
+
+## Future Direction: Per-Subspace VAEs
+
+A potential extension is to train individual VAEs (Variational Autoencoders) per decomposed subspace. Each of the $k$ VAEs would learn a nonlinear representation of the same embedding vector within its respective subspace, enabling richer semantic matching beyond what linear projection provides. This remains exploratory and is not part of the current system.
