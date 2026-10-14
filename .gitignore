@@ -1,1 +1,46 @@
-todo.txt
+# Local credentials and configuration
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.key
+*.pem
+credentials/
+secrets/
+# Private corpora and generated artifacts at any depth
+data/
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.pkl
+*.joblib
+*.db
+*.sqlite*
+logs/
+*.log
+# Dependencies, builds, caches and test output
+.venv/
+venv/
+node_modules/
+build/
+dist/
+*.egg-info/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.cache/
+.coverage*
+coverage.xml
+htmlcov/
+.ipynb_checkpoints/
+*.tsbuildinfo
+# Local editor and backup files
+.idea/
+.vscode/
+.DS_Store
+*.backup
+*.bak
+*.tmp
+# Lockfiles are intentionally versioned for the handoff.
