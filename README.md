@@ -1,137 +1,99 @@
-# Face ID for Tone
+# Face ID for Tone — research prototype
 
-**Discovering content preferences through residualized embedding spaces**
+This repository consolidates the N-step SVD proposal and the previously uncommitted
+`unsupervised-learning` companion application. It explores learning communication
+preferences through comparisons between examples, then using those preferences
+for retrieval and generation.
 
-A full-stack system that decomposes 1,536-dimensional OpenAI embeddings using SVD to separate topic from tone. The "residualized tone space" isolates stylistic preferences independent of subject matter. A 9-round convergent A/B testing interface calibrates user preferences across 80k+ posts, using Pinecone for vector search and Supabase for real-time state.
+**Status:** source handoff, not a validated tone model or production application.
+SVD guarantees geometric orthogonality, not a semantic topic/tone split. The
+calibration paths have known defects, and the full application needs external
+artifacts that are deliberately not included. Start with the offline example.
 
-## Key Features
+## Start here: offline example
 
-- **Novel SVD decomposition**: 160 topic + 130 tone dimensions from 1,536D embeddings
-- **Residualized tone space** eliminates topic bias from preference signal
-- **Interactive convergent search** with 9-round A/B calibration
-- **80k+ post corpus** with real-time vector similarity search
+Install Python 3.11+ and [uv](https://docs.astral.sh/uv/), then run from this repo:
 
-## Tech Stack
+```bash
+uv run --no-project --with numpy python examples/offline_decomposition.py
+```
 
-Python | FastAPI | React | OpenAI Embeddings | SVD/PCA | Pinecone | Supabase
+This generates a tiny synthetic matrix in memory and checks reconstruction,
+orthogonality, and equivalence to blocks of one SVD. It also demonstrates that
+orthogonal components can still mix topic and tone and remain statistically
+dependent. It makes no network calls, reads no corpus, and writes no data files.
+The first uv invocation may download NumPy.
 
-## Dataset
+## Application entrypoints
 
-The system operates on a corpus of **80,000+ posts**, each embedded into 1,536-dimensional vectors via OpenAI's embedding API. These embeddings serve as the input to the SVD decomposition pipeline described below. The dataset is not included in this repository due to size constraints and API usage considerations, but the decomposition algorithm and preference scoring system are fully described here and implemented in the companion application.
+| Path | Role | Requirements / status |
+| --- | --- | --- |
+| `residualized_tone_space/api/main.py` | FastAPI backend used by the React UI | External arrays/corpus; known calibration failures |
+| `frontend/` | React interface | Node/npm; backend at localhost:8000; prototype flows remain incomplete |
+| `scripts/utilities/tone_calibration_system_fixed.py` | API's Ridge-based comparison learner | Known zero-vector/NaN defect despite the historical filename |
+| `run_pipeline.py` | Experimental interactive CLI | External artifacts, optional Supabase/OpenAI; separate confidence heuristic |
+| `residualized_tone_space/core/` | Decomposition, projection and alternative preference learner | Unit tests included; logistic learner has a known one-class error |
+| `scripts/analysis/`, `scripts/investigation/`, `notebooks/` | Research utilities | Some need private data, GPU dependencies or services beyond the base environment |
+| `netlify/`, Docker files | Historical deployment experiments | Preserved for inspection, not validated deployment instructions |
 
-## A Note on Machine Learning
+### Install and check the source
 
-This project deliberately avoids traditional ML classifiers (neural networks, gradient-boosted trees, etc.) for preference discovery. Instead, it relies entirely on **linear algebraic decomposition** (SVD) and **geometric operations** (projection, residualization) in embedding space.
+```bash
+uv sync --locked
+uv run pytest
+uv build
+cd frontend
+npm ci --no-audit --no-fund
+npm run build
+```
 
-The rationale:
+The lockfiles are included. Results and remaining limitations are recorded in
+[the handoff](docs/HANDOFF.md). Passing geometry tests does not validate semantic
+separation or client preference accuracy.
 
-1. **Interpretability**: Each SVD component corresponds to a concrete, orthogonal subspace with a semantic label (topic, tone, etc.). There are no opaque learned weights to interpret.
-2. **Sample efficiency**: The preference scoring algorithm (Phase 2 below) works from as few as 5 user selections. ML models typically require orders of magnitude more labeled data to learn meaningful preference signals.
-3. **Composability**: Because the decomposition produces orthogonal subspaces, preference scores for topic and tone are genuinely independent. An ML model trained end-to-end would entangle these signals, making it impossible to ask "does this user like the *tone* of this post, regardless of topic?"
-4. **No training loop**: The SVD is computed once offline. User preference profiles are computed in real-time via matrix-vector products -- no model retraining, no drift, no feedback loops.
+### Explore the web application locally
 
-A future direction could involve training individual VAEs per subspace to learn nonlinear representations within each decomposed layer (see the end of this document), but the current system demonstrates that meaningful preference separation is achievable with purely linear methods.
+After supplying the data described in [the handoff](docs/HANDOFF.md), run the
+backend **from the repository root**:
 
----
+```bash
+uv run uvicorn residualized_tone_space.api.main:app --host 127.0.0.1 --port 8000
+```
 
-## N-Step Orthogonal Decomposition Algorithm
+In another terminal:
 
-#### **Initialization**
+```bash
+cd frontend
+npm start
+```
 
-1.  **Input Data**: The raw embedding matrix $E \in \mathbb{R}^{N \times d}$, where $N$ is the number of samples and $d$ is the embedding dimension (e.g., 1536).
-2.  **Initial Residual**: Set the first residual matrix $R^{(0)}$ to be the input data.
-    $$R^{(0)} = E$$
+Visit localhost:3000 and localhost:8000/docs. Optional service configuration is
+listed in `.env.example`; export values into the server process when needed.
+The API does not automatically load this file. Do not interpret a running HTTP
+server as successful calibration: startup logs data-loading failures and can
+leave the calibration system unavailable.
 
-#### **Iterative Decomposition Loop**
+## What to work on next
 
-For each step $i = 1, 2, ..., n$:
+Repair preference learning and calibration, implement held-out human preference
+evaluation, and compare raw embeddings with residualized and supervised
+baselines. Test whether residualization improves style matching across unfamiliar
+topics without discarding useful tone information, and whether that translates
+into fewer client revisions and better approval of agent responses.
 
-1.  **Decompose the Residual**: Perform Singular Value Decomposition (SVD) on the residual from the previous step, $R^{(i-1)}$.
-    $$U^{(i)}, \Sigma^{(i)}, (V^{(i)})^T = \text{SVD}(R^{(i-1)})$$
-2.  **Determine Rank**: Analyze the singular values in $\Sigma^{(i)}$ (e.g., using an elbow plot or cumulative variance threshold) to determine the optimal rank $k_i$ for the current layer of meaning (e.g., "Topic," "Tone," "Formality," etc.).
-3.  **Extract Basis Vectors**: The basis for this layer, $A^{(i)}$, consists of the top $k_i$ right singular vectors from $V^{(i)}$.
-    $$A^{(i)} = V^{(i)}[1:k_i, :] \in \mathbb{R}^{k_i \times d}$$
-4.  **Create Projection Matrix**: Construct the idempotent projection matrix $P^{(i)}$ for the current subspace.
-    $$P^{(i)} = (A^{(i)})^T A^{(i)} \in \mathbb{R}^{d \times d}$$
-5.  **Isolate Component**: Project the previous residual $R^{(i-1)}$ onto this new subspace to get the component matrix $E^{(i)}$ for the current layer. This is the "pure" representation of this layer's meaning for each sample.
-    $$E^{(i)} = R^{(i-1)} \cdot P^{(i)}$$
-6.  **Calculate Next Residual**: Subtract the isolated component from the previous residual to prepare for the next iteration. This new residual $R^{(i)}$ is now, by definition, orthogonal to the subspace defined by $A^{(i)}$.
-    $$R^{(i)} = R^{(i-1)} - E^{(i)}$$
+For a Hobbes pilot, start with client-approved response comparisons and examples;
+factual accuracy, competitor policy, voice delivery and agent actions require
+separate evaluation.
 
-#### **Final Output**
+## Handoff and provenance
 
-After $n$ steps, the decomposition yields:
+- [Current status, known failures and next steps](docs/HANDOFF.md)
+- [Original mathematical proposal, with historical claims marked](docs/history/original-proposal.md)
+- [Historical companion README](docs/history/companion-readme.md)
+- [Import manifest and source checksums](docs/import-manifest.json)
 
-* A set of **mutually orthogonal component matrices**: $\{E^{(1)}, E^{(2)}, ..., E^{(n)}\}$, where the row space of any $E^{(i)}$ is orthogonal to the row space of any $E^{(j)}$ for $i \neq j$.
-* A **final residual matrix** $R^{(n)}$, representing unexplained variance.
-
-The original embedding matrix is the sum of these components:
-$$E = E^{(1)} + E^{(2)} + \cdots + E^{(n)} + R^{(n)}$$
-
-This additive decomposition corresponds to a **direct sum** of the underlying vector subspaces. Let $S_i$ be the row space of $E^{(i)}$ and $S_{\text{res}}$ be the row space of the final residual $R^{(n)}$. The original embedding space $S$ (the row space of $E$) can then be expressed as:
-$$S = S_1 \oplus S_2 \oplus \cdots \oplus S_n \oplus S_{\text{res}}$$
-
-If the process continues until the residual $R^{(n)}$ is a zero matrix (or numerically close), the decomposition is complete. The dimension of a direct sum is the sum of the dimensions of its subspaces. Since the rank $k_i$ is the dimension of the subspace $S_i$, the sum of the ranks equals the dimension of the original embedding space (assuming $E$ has full rank).
-$$\sum_{i=1}^{n} k_i = \dim(S) = d$$
-
-For example:
-$$(160 \text{ topics}) + (130 \text{ tone}) + \cdots + (k_n \text{ noise}) = 1536$$
-
----
-
-## Multi-Layer Preference Scoring Algorithm
-
-This algorithm takes a small set of items a user likes and produces a detailed "preference profile" broken down by each of the decomposed layers (topic, tone, etc.).
-
-#### **Phase 1: Pre-computation (Done Once, Offline)**
-
-Before any user interacts with the system, the N-Step Decomposition Algorithm must be completed. The essential outputs required from that process are the **basis vectors** for each layer:
-* $A^{(1)} \in \mathbb{R}^{k_1 \times d}$ (Topic Basis)
-* $A^{(2)} \in \mathbb{R}^{k_2 \times d}$ (Tone Basis)
-* ...
-* $A^{(n)} \in \mathbb{R}^{k_n \times d}$ (Final Layer Basis)
-
-These matrices serve as the measurement framework for user preferences.
-
-#### **Phase 2: Preference Scoring (Done Per User, Real-time)**
-
-**1. Collect User Input**
-* A user selects a small number, $m$, of content pieces they like (e.g., $m=5$).
-* Retrieve their corresponding raw embeddings to form a matrix $E_{\text{user}} \in \mathbb{R}^{m \times d}$.
-
-**2. Calculate Global Preference Vector ($w_{\text{global}}$)**
-* Average the embeddings of the user's chosen items to create a single **global preference vector**. This vector represents the center of the user's taste in the high-dimensional embedding space.
-    $$w_{\text{global}} = \frac{1}{m} \sum_{j=1}^{m} E_{\text{user}}[j, :]$$
-* The result is a single vector $w_{\text{global}} \in \mathbb{R}^{d}$.
-
-**3. Project Preference Vector onto Each Layer**
-* Measure how this global preference vector aligns with each of the predefined layers. For each layer $i = 1, 2, ..., n$:
-    * Calculate the **preference scores** for that layer, $s^{(i)}$, by taking the dot product of the global preference vector with the transpose of that layer's basis matrix, $A^{(i)}$.
-        $$s^{(i)} = w_{\text{global}} \cdot (A^{(i)})^T$$
-* This step decomposes the user's single preference vector into a set of score vectors.
-
-#### **Final Output**
-
-The output is a **user preference profile**, which is a set of score vectors: $\{s^{(1)}, s^{(2)}, ..., s^{(n)}\}$.
-* $s^{(1)} \in \mathbb{R}^{k_1}$: The user's scores for each of the $k_1$ topic axes.
-* $s^{(2)} \in \mathbb{R}^{k_2}$: The user's scores for each of the $k_2$ tone axes.
-* ...and so on.
-
-#### **Content Recommendation**
-
-Once a user's preference profile is established, it can be used to recommend new content:
-
-**1. Score New Content**: For any new post with embedding $e_{\text{new}}$, calculate its scores for each layer:
-    * Topic Scores: $c^{(1)} = e_{\text{new}} \cdot (A^{(1)})^T$
-    * Tone Scores: $c^{(2)} = e_{\text{new}} \cdot (A^{(2)})^T$
-    * ...and so on.
-
-**2. Measure Similarity**: Recommend content where the content's score profile $\{c^{(1)}, c^{(2)}, ...\}$ is most similar to the user's preference profile $\{s^{(1)}, s^{(2)}, ...\}$. Similarity can be calculated for each layer (e.g., using cosine similarity between $c^{(1)}$ and $s^{(1)}$) and then combined into an overall recommendation score.
-
-This approach enables explainable recommendations by identifying which specific layers (topic, tone, etc.) drive the recommendation.
-
----
-
-## Future Direction: Per-Subspace VAEs
-
-A potential extension is to train individual VAEs (Variational Autoencoders) per decomposed subspace. Each of the $k$ VAEs would learn a nonlinear representation of the same embedding vector within its respective subspace, enabling richer semantic matching beyond what linear projection provides. This remains exploratory and is not part of the current system.
+Verify the consolidated snapshot with `python scripts/verify_import.py`. The
+manifest records the source bytes separately from the reviewed handoff bytes;
+documentation edits and packaging adjustments are explicitly identified. The
+original local working tree was left intact. Private datasets, model artifacts,
+credentials and generated output were not imported.

@@ -1,0 +1,608 @@
+{
+  "format_version": 1,
+  "source_repository": "https://github.com/Unobtainiumrock/unsupervised-learning-svd-social-media",
+  "source_revision": null,
+  "source_state": "Local working tree on an unborn master branch; no commits. Staged and untracked source included.",
+  "snapshot_date": "2026-10-14T23:11:55.346772+00:00",
+  "destination_base": "5bd0fd6c90941d290517514efff292b61dce64bb",
+  "original_proposal_sha256": "9e9c68083c34e583e6da05b65544c5a5a30e1df26da0c9ec3ca9d790ecda68a5",
+  "excluded": [
+    ".git and Git history",
+    ".env and credentials",
+    "data/ and nested data/ directories",
+    "generated arrays, reports, builds, caches and logs",
+    "golden-example.md (content example not needed for source handoff)",
+    "backup files"
+  ],
+  "files": [
+    {
+      "source": ".env.example",
+      "destination": ".env.example",
+      "source_sha256": "9a22e859f74738f5b87517f9133aa43fb844a835a8ed44d11c549f7ccc9d3e43",
+      "handoff_sha256": "b0b83977bab27d79f94ee5001f18b049c952479404e50fea2c5f0a8ec8b8feee",
+      "change": "Replaced source example with empty service credential placeholders."
+    },
+    {
+      "source": ".gitignore",
+      "destination": ".gitignore",
+      "source_sha256": "72a964b7b6010e5a0bc7a9a9d3bee4f6ef541b8ffadae414937d8f74602e81d9",
+      "handoff_sha256": "6d0755a93c639b40072a903ddd452f4a24f57274d7e355fd65cae8b16bc27452",
+      "change": "Exclude private artifacts and generated output at any depth; retain dependency lockfiles."
+    },
+    {
+      "source": "DEPLOYMENT_GUIDE.md",
+      "destination": "docs/history/deployment-guide.md",
+      "source_sha256": "a8dd3bf5796560d845cb84f8bab53dab44458ed5bdbb1cb3c5919e6b2d76556f",
+      "handoff_sha256": "71bbd6c6e52e95043e90161c9073bdceb0c28f503a0c1451c10513317d172fab",
+      "change": "Relocated historical documentation and added a status notice; original text preserved below it."
+    },
+    {
+      "source": "DEVELOPMENT_GUIDE.md",
+      "destination": "docs/history/development-guide.md",
+      "source_sha256": "1f79b597baa9a5ccf129adbd4e47754d9e42b09beedf25d585200ac2dbbe29ff",
+      "handoff_sha256": "eff0e844b7b03758d95791f8a4ade2d4209f3f4211a5b93e2157fc6baec632b4",
+      "change": "Relocated historical documentation and added a status notice; original text preserved below it."
+    },
+    {
+      "source": "Dockerfile",
+      "destination": "Dockerfile",
+      "source_sha256": "fa583cfeaeb4fdd34198ba2655a17ea97cbb0077549a40a492b07f5b743e4f6b",
+      "handoff_sha256": "fa583cfeaeb4fdd34198ba2655a17ea97cbb0077549a40a492b07f5b743e4f6b",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "Makefile",
+      "destination": "Makefile",
+      "source_sha256": "7d294ac8f41069f38ab1a1795a19f5fdfd6b962f799c13de928a1aac19f1802a",
+      "handoff_sha256": "7d294ac8f41069f38ab1a1795a19f5fdfd6b962f799c13de928a1aac19f1802a",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "README.md",
+      "destination": "docs/history/companion-readme.md",
+      "source_sha256": "e6a8f1cd0550f8fc28a2bfdc9e4753b4fd1d5cc8dba84f6f0c0d98914f40d8da",
+      "handoff_sha256": "0c0a61b3cee50378e6dd9f6e176aea33dad0d984d3565c32d5f90e4172f65c76",
+      "change": "Relocated historical documentation and added a status notice; original text preserved below it."
+    },
+    {
+      "source": "deploy-netlify.sh",
+      "destination": "deploy-netlify.sh",
+      "source_sha256": "ba64a0cec19c13618310ca2ca85008a6934eeeb8db2a50a3959df759231c62d7",
+      "handoff_sha256": "ba64a0cec19c13618310ca2ca85008a6934eeeb8db2a50a3959df759231c62d7",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "docker-compose.yml",
+      "destination": "docker-compose.yml",
+      "source_sha256": "7233a9e759b2dc9a4f8b7a3eeeed70a1821633c95d7980bcec02d8111a0cccbe",
+      "handoff_sha256": "7233a9e759b2dc9a4f8b7a3eeeed70a1821633c95d7980bcec02d8111a0cccbe",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "docs/MATHEMATICAL_REFERENCE.md",
+      "destination": "docs/history/mathematical-reference.md",
+      "source_sha256": "25c20f34fa85b140510421f536934951135136715f14a20f8f696a2bf1f619a7",
+      "handoff_sha256": "436f8538ea2e021988245be85f133c9f35b78d1d00370493c39721527907cdbe",
+      "change": "Relocated historical documentation and added a status notice; original text preserved below it."
+    },
+    {
+      "source": "docs/README.md",
+      "destination": "docs/history/documentation-index.md",
+      "source_sha256": "d79d0699b7dcd73df52b27532883c6a9fd326c1b5076893694ec95092dff5d0f",
+      "handoff_sha256": "2c2ed6ce158f62ee6431fde215a272f4ea83e58d892d747f1561ed6d6e7ea161",
+      "change": "Relocated historical documentation and added a status notice; original text preserved below it."
+    },
+    {
+      "source": "frontend/.env.example",
+      "destination": "frontend/.env.example",
+      "source_sha256": "6015fff678f9a7d70ebe17c7b50dc87217aa39e48f3c690a4310112ef5f73c34",
+      "handoff_sha256": "6015fff678f9a7d70ebe17c7b50dc87217aa39e48f3c690a4310112ef5f73c34",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/Dockerfile",
+      "destination": "frontend/Dockerfile",
+      "source_sha256": "cccda76cdf5f6f2486563a264af9b27755dde259e2500bd111a48bad564b37d7",
+      "handoff_sha256": "cccda76cdf5f6f2486563a264af9b27755dde259e2500bd111a48bad564b37d7",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/README.md",
+      "destination": "frontend/README.md",
+      "source_sha256": "284948351ed464b2722bacd1308e023526df0cf000a2d69831ea461d2bdba238",
+      "handoff_sha256": "27fd985b808af8b8c3ee8ba4c4714ccc581c8211ede5257ecbab954f5d0b3cf4",
+      "change": "Added a notice directing readers to current setup and limitations."
+    },
+    {
+      "source": "frontend/netlify.toml",
+      "destination": "frontend/netlify.toml",
+      "source_sha256": "86d6e9397d47f789a956a698d42ce17f0ea73f30dfd2884a67c7637e7034e4df",
+      "handoff_sha256": "86d6e9397d47f789a956a698d42ce17f0ea73f30dfd2884a67c7637e7034e4df",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/package-lock.json",
+      "destination": "frontend/package-lock.json",
+      "source_sha256": "237d1ae75131090cd8531a1ea8b1aec54f2021bee59078ced2cda18f98626579",
+      "handoff_sha256": "237d1ae75131090cd8531a1ea8b1aec54f2021bee59078ced2cda18f98626579",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/package.json",
+      "destination": "frontend/package.json",
+      "source_sha256": "dda2a984c2b7a2711b9807764b927248136c7e09992211d4d476216a07012a26",
+      "handoff_sha256": "dda2a984c2b7a2711b9807764b927248136c7e09992211d4d476216a07012a26",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/postcss.config.js",
+      "destination": "frontend/postcss.config.js",
+      "source_sha256": "251ecddd4672c9cf467547e3dc535de00ad2129df26e7e7ae728fa4e5ac45fc5",
+      "handoff_sha256": "251ecddd4672c9cf467547e3dc535de00ad2129df26e7e7ae728fa4e5ac45fc5",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/public/index.html",
+      "destination": "frontend/public/index.html",
+      "source_sha256": "59c16a54b2b373c765a7ade474fc48d624282329a1b18b31e928b874c5124f92",
+      "handoff_sha256": "59c16a54b2b373c765a7ade474fc48d624282329a1b18b31e928b874c5124f92",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/public/manifest.json",
+      "destination": "frontend/public/manifest.json",
+      "source_sha256": "7341dad135ba622095b0c88bf375f3fa91f11e1c70e055d0dbbbc2fd91651966",
+      "handoff_sha256": "7341dad135ba622095b0c88bf375f3fa91f11e1c70e055d0dbbbc2fd91651966",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/public/sw.js",
+      "destination": "frontend/public/sw.js",
+      "source_sha256": "4b7f7aa48bda7b1ede01454d45a73fa57788a43b035afeb2633e69d862ad67e3",
+      "handoff_sha256": "4b7f7aa48bda7b1ede01454d45a73fa57788a43b035afeb2633e69d862ad67e3",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/src/App.css",
+      "destination": "frontend/src/App.css",
+      "source_sha256": "7e4b654d33cd075b1f48608aad92f0760b181da8df18db7a966f08ecee66ed33",
+      "handoff_sha256": "7e4b654d33cd075b1f48608aad92f0760b181da8df18db7a966f08ecee66ed33",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/src/App.tsx",
+      "destination": "frontend/src/App.tsx",
+      "source_sha256": "3791eb9ad1a98812fa16ea7455b826d353e0983a9b27e444dfba46eb3ca6a9b3",
+      "handoff_sha256": "3791eb9ad1a98812fa16ea7455b826d353e0983a9b27e444dfba46eb3ca6a9b3",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/src/components/layout/Navbar.tsx",
+      "destination": "frontend/src/components/layout/Navbar.tsx",
+      "source_sha256": "aff292083bb6b2cc9dfca13f67a5497d43a64dd4b5394bf29d44f4532ebaf459",
+      "handoff_sha256": "aff292083bb6b2cc9dfca13f67a5497d43a64dd4b5394bf29d44f4532ebaf459",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/src/components/onboarding/ConversationalOnboarding.tsx",
+      "destination": "frontend/src/components/onboarding/ConversationalOnboarding.tsx",
+      "source_sha256": "aa6f0c2abc4394f47d8b5bf40d7fbe4050d351733650a3d16ad2c20938323a7c",
+      "handoff_sha256": "aa6f0c2abc4394f47d8b5bf40d7fbe4050d351733650a3d16ad2c20938323a7c",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/src/index.css",
+      "destination": "frontend/src/index.css",
+      "source_sha256": "48e012f2866e6afb7ecd700c65162296616ef1f3c42bb0d7d89f378c13f42819",
+      "handoff_sha256": "48e012f2866e6afb7ecd700c65162296616ef1f3c42bb0d7d89f378c13f42819",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/src/index.tsx",
+      "destination": "frontend/src/index.tsx",
+      "source_sha256": "94092a23a99ad100efbd14fb57a00e8d5375c4caa2c42760bb950d903b7229e8",
+      "handoff_sha256": "94092a23a99ad100efbd14fb57a00e8d5375c4caa2c42760bb950d903b7229e8",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/src/pages/AboutPage.tsx",
+      "destination": "frontend/src/pages/AboutPage.tsx",
+      "source_sha256": "bfd4be5145d1533720d2b67cb7b3372eaf8697c8cc762eca7cc71d4d52fa78a6",
+      "handoff_sha256": "bfd4be5145d1533720d2b67cb7b3372eaf8697c8cc762eca7cc71d4d52fa78a6",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/src/pages/CalibrationPage.tsx",
+      "destination": "frontend/src/pages/CalibrationPage.tsx",
+      "source_sha256": "3af0ed1fbaa887ac7b7da9ff665080b38a6a957a9665e2fa9dbc0a7c63f82151",
+      "handoff_sha256": "3af0ed1fbaa887ac7b7da9ff665080b38a6a957a9665e2fa9dbc0a7c63f82151",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/src/pages/HomePage.tsx",
+      "destination": "frontend/src/pages/HomePage.tsx",
+      "source_sha256": "c901b1c5e0e966fc66f0fbddc728a9a938f16ab50b6b459ee84ba5460e4e2acf",
+      "handoff_sha256": "c901b1c5e0e966fc66f0fbddc728a9a938f16ab50b6b459ee84ba5460e4e2acf",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/src/pages/ResultsPage.tsx",
+      "destination": "frontend/src/pages/ResultsPage.tsx",
+      "source_sha256": "292bd31398eb4a1d9d7cfe080ffe4905629e24ba0158e3d03b8088712df79a87",
+      "handoff_sha256": "292bd31398eb4a1d9d7cfe080ffe4905629e24ba0158e3d03b8088712df79a87",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/tailwind.config.js",
+      "destination": "frontend/tailwind.config.js",
+      "source_sha256": "4d351de7ee36e9e6ae0ad0396428c607c0a2e2f9a4a19a6ab02a9235a776fe8c",
+      "handoff_sha256": "4d351de7ee36e9e6ae0ad0396428c607c0a2e2f9a4a19a6ab02a9235a776fe8c",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/tone_calibration.html",
+      "destination": "frontend/tone_calibration.html",
+      "source_sha256": "6dfb9a7e8a0d2721dddd684a67c20d3b97060b14a04f4ad6f21d2b9b170978e9",
+      "handoff_sha256": "6dfb9a7e8a0d2721dddd684a67c20d3b97060b14a04f4ad6f21d2b9b170978e9",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "frontend/tsconfig.json",
+      "destination": "frontend/tsconfig.json",
+      "source_sha256": "1fcc7e2fb8e2649be0be3a50d9f3d1f506d8343e1c412c4477d08d25b74bf4b3",
+      "handoff_sha256": "1fcc7e2fb8e2649be0be3a50d9f3d1f506d8343e1c412c4477d08d25b74bf4b3",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "netlify/functions/tone-api.js",
+      "destination": "netlify/functions/tone-api.js",
+      "source_sha256": "180613b406fefc49c66dc1965f0d0cc980c7c176561a4f0639108b84e5191f87",
+      "handoff_sha256": "180613b406fefc49c66dc1965f0d0cc980c7c176561a4f0639108b84e5191f87",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "netlify/functions/tone-calibration.py",
+      "destination": "netlify/functions/tone-calibration.py",
+      "source_sha256": "b324999665e17d56d64c1b68dfda0be4192ba2d8b39980e5f48852badf6a2fb5",
+      "handoff_sha256": "b324999665e17d56d64c1b68dfda0be4192ba2d8b39980e5f48852badf6a2fb5",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "netlify.toml",
+      "destination": "netlify.toml",
+      "source_sha256": "9590bd9189af678bca22a0069ea4349bd598f0178ca1b14739e56d4be5ae89d6",
+      "handoff_sha256": "9590bd9189af678bca22a0069ea4349bd598f0178ca1b14739e56d4be5ae89d6",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "notebooks/example_analysis.ipynb",
+      "destination": "notebooks/example_analysis.ipynb",
+      "source_sha256": "6904d45e76ec31bacd648f932c7063c7eafc03be3e822a34afc739ccf797da6c",
+      "handoff_sha256": "6904d45e76ec31bacd648f932c7063c7eafc03be3e822a34afc739ccf797da6c",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "playground/MATHEMATICAL_FLOW_DIAGRAM.md",
+      "destination": "playground/MATHEMATICAL_FLOW_DIAGRAM.md",
+      "source_sha256": "c1a3996bab5c0f9ede6f663db25cd0c67a955af3b72333e673de16d09d54640f",
+      "handoff_sha256": "c1a3996bab5c0f9ede6f663db25cd0c67a955af3b72333e673de16d09d54640f",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "pyproject.toml",
+      "destination": "pyproject.toml",
+      "source_sha256": "4ad4dd266ad36f5fbcecfd420b777984afae39c2abcfb4c5743276e85fd3bcb7",
+      "handoff_sha256": "7136e5af2af4d48127d2343298bac6db50eae1533e7abaf2f0d643af27bcaa2b",
+      "change": "Include scripts package in wheel because the API imports the companion learner."
+    },
+    {
+      "source": "residualized_tone_space/__init__.py",
+      "destination": "residualized_tone_space/__init__.py",
+      "source_sha256": "12b3ad711b3b7d9fd2fec6728186b0b0298a60fc214dabd6e93d25e7cfcb8120",
+      "handoff_sha256": "12b3ad711b3b7d9fd2fec6728186b0b0298a60fc214dabd6e93d25e7cfcb8120",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/api/__init__.py",
+      "destination": "residualized_tone_space/api/__init__.py",
+      "source_sha256": "f517d4ca549110bfe45842aee28ad3d161d284468d294f14565f95e0c4de9626",
+      "handoff_sha256": "f517d4ca549110bfe45842aee28ad3d161d284468d294f14565f95e0c4de9626",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/api/main.py",
+      "destination": "residualized_tone_space/api/main.py",
+      "source_sha256": "33572fa75f24cecd94a0ecd5ac3f818b4a5266b4476ad60bfd644cc3ffe1551a",
+      "handoff_sha256": "33572fa75f24cecd94a0ecd5ac3f818b4a5266b4476ad60bfd644cc3ffe1551a",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/core/__init__.py",
+      "destination": "residualized_tone_space/core/__init__.py",
+      "source_sha256": "8d33f92ca2d9b8a0d2d127e5fcee0a0d910bdaab84b2f54c7e7c8784f8a3be85",
+      "handoff_sha256": "8d33f92ca2d9b8a0d2d127e5fcee0a0d910bdaab84b2f54c7e7c8784f8a3be85",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/core/residual_calculator.py",
+      "destination": "residualized_tone_space/core/residual_calculator.py",
+      "source_sha256": "e4a95a922298195b006fef01abd200973203c9e5127233d3b34d1ea51c023a54",
+      "handoff_sha256": "e4a95a922298195b006fef01abd200973203c9e5127233d3b34d1ea51c023a54",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/core/tone_axis_learning.py",
+      "destination": "residualized_tone_space/core/tone_axis_learning.py",
+      "source_sha256": "2800db6b3d4fe0c9f177bc960e5d94f33fbb073a8dfe50c161a399236b7f5b8e",
+      "handoff_sha256": "2800db6b3d4fe0c9f177bc960e5d94f33fbb073a8dfe50c161a399236b7f5b8e",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/core/topic_subspace.py",
+      "destination": "residualized_tone_space/core/topic_subspace.py",
+      "source_sha256": "7db89ea5cd7f3dc99f0fd6f09a5313cdeb9bb5659d183d5e91786c7612ddb8d3",
+      "handoff_sha256": "7db89ea5cd7f3dc99f0fd6f09a5313cdeb9bb5659d183d5e91786c7612ddb8d3",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/main.py",
+      "destination": "residualized_tone_space/main.py",
+      "source_sha256": "ab1cb392afd58fb208ccdb127939cea073baf0dffb0f2c7946a7f5aecc83ad86",
+      "handoff_sha256": "ab1cb392afd58fb208ccdb127939cea073baf0dffb0f2c7946a7f5aecc83ad86",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/models/__init__.py",
+      "destination": "residualized_tone_space/models/__init__.py",
+      "source_sha256": "f647baaa2ca8917aaba7faad7d32eac5cfc280bbe29834ab422480e1786ad829",
+      "handoff_sha256": "f647baaa2ca8917aaba7faad7d32eac5cfc280bbe29834ab422480e1786ad829",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/models/schemas.py",
+      "destination": "residualized_tone_space/models/schemas.py",
+      "source_sha256": "d27af6fb9f902c116bfc36beb25faec2d7e982e5744158a8d9f91abc90ac5cf5",
+      "handoff_sha256": "d27af6fb9f902c116bfc36beb25faec2d7e982e5744158a8d9f91abc90ac5cf5",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/utils/__init__.py",
+      "destination": "residualized_tone_space/utils/__init__.py",
+      "source_sha256": "60b72985a8defe29a408516f032ed940bc06609568526f460db2630bb40f8c41",
+      "handoff_sha256": "60b72985a8defe29a408516f032ed940bc06609568526f460db2630bb40f8c41",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/utils/embeddings.py",
+      "destination": "residualized_tone_space/utils/embeddings.py",
+      "source_sha256": "ad5755edf3839e5cc17e826963a7581562bf698a3eae25c0efb2e639776403e6",
+      "handoff_sha256": "ad5755edf3839e5cc17e826963a7581562bf698a3eae25c0efb2e639776403e6",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/utils/performance.py",
+      "destination": "residualized_tone_space/utils/performance.py",
+      "source_sha256": "9295267ce7166b9f51c620c57555174d728d1a8d0fad1bf98ddfe88917488ac4",
+      "handoff_sha256": "9295267ce7166b9f51c620c57555174d728d1a8d0fad1bf98ddfe88917488ac4",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/utils/pinecone_client.py",
+      "destination": "residualized_tone_space/utils/pinecone_client.py",
+      "source_sha256": "4b49934387664dcfd0add51720e2698fea00a05401f16f2139e9f21504e66975",
+      "handoff_sha256": "4b49934387664dcfd0add51720e2698fea00a05401f16f2139e9f21504e66975",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "residualized_tone_space/utils/validation.py",
+      "destination": "residualized_tone_space/utils/validation.py",
+      "source_sha256": "8e4eadd9fb38c6c3667ef2ebdff4433661ff5009b14c12419a077f0c77d0e768",
+      "handoff_sha256": "8e4eadd9fb38c6c3667ef2ebdff4433661ff5009b14c12419a077f0c77d0e768",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "run_pipeline.py",
+      "destination": "run_pipeline.py",
+      "source_sha256": "90829114f5dfdda69e77f25e2588f042a93dbe7a36593d9d4dc12aa0d4617918",
+      "handoff_sha256": "90829114f5dfdda69e77f25e2588f042a93dbe7a36593d9d4dc12aa0d4617918",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/__init__.py",
+      "destination": "scripts/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "handoff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/analysis/__init__.py",
+      "destination": "scripts/analysis/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "handoff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/analysis/advanced_tone_analytics.py",
+      "destination": "scripts/analysis/advanced_tone_analytics.py",
+      "source_sha256": "9ecae1da15c5c341828feba1c60d5a158e9eb827a70620e40dc79e4879c725e1",
+      "handoff_sha256": "9ecae1da15c5c341828feba1c60d5a158e9eb827a70620e40dc79e4879c725e1",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/analysis/colab_setup.py",
+      "destination": "scripts/analysis/colab_setup.py",
+      "source_sha256": "69f02f3f18861b881ccfc370eea3ad3fcb1ccc5c801f0cdaeb559622929327fd",
+      "handoff_sha256": "69f02f3f18861b881ccfc370eea3ad3fcb1ccc5c801f0cdaeb559622929327fd",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/analysis/generate_optimal_reports.py",
+      "destination": "scripts/analysis/generate_optimal_reports.py",
+      "source_sha256": "f7d7546479faea6c639e30f1324217f80d27968168f3fe43dc7e63e73ef15a13",
+      "handoff_sha256": "f7d7546479faea6c639e30f1324217f80d27968168f3fe43dc7e63e73ef15a13",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/analysis/generate_optimial_reports_2.py",
+      "destination": "scripts/analysis/generate_optimial_reports_2.py",
+      "source_sha256": "e735d1b3bb175503a9c859945dbb0db70bf4601c23e49a1a86d02ddb9df51185",
+      "handoff_sha256": "e735d1b3bb175503a9c859945dbb0db70bf4601c23e49a1a86d02ddb9df51185",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/analysis/optimal_rank_analysis.py",
+      "destination": "scripts/analysis/optimal_rank_analysis.py",
+      "source_sha256": "c69b9f4f7cdd5d5d069709857650b8cbddd3f77a40477b65dfada84c46b46165",
+      "handoff_sha256": "c69b9f4f7cdd5d5d069709857650b8cbddd3f77a40477b65dfada84c46b46165",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/analysis/residual_tone_processor.py",
+      "destination": "scripts/analysis/residual_tone_processor.py",
+      "source_sha256": "7730b256da3c2e44f1cf1067b12f4123d953f97634ff96df7bcef6cfeb48c201",
+      "handoff_sha256": "7730b256da3c2e44f1cf1067b12f4123d953f97634ff96df7bcef6cfeb48c201",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/analysis/svd_cluster_analysis_gpu.py",
+      "destination": "scripts/analysis/svd_cluster_analysis_gpu.py",
+      "source_sha256": "0838f619a4e0619cd1d191ba97adb7956bf219b74626def7a8eaa0bb0b61e11c",
+      "handoff_sha256": "0838f619a4e0619cd1d191ba97adb7956bf219b74626def7a8eaa0bb0b61e11c",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/analysis/svd_cluster_analysis_optimized.py",
+      "destination": "scripts/analysis/svd_cluster_analysis_optimized.py",
+      "source_sha256": "4f8904d8c6873fb59172799792fb7c5195f7ac54a25dcb393e76a5bbf09be375",
+      "handoff_sha256": "4f8904d8c6873fb59172799792fb7c5195f7ac54a25dcb393e76a5bbf09be375",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/core/__init__.py",
+      "destination": "scripts/core/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "handoff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/core/complete_pipeline_honest.py",
+      "destination": "scripts/core/complete_pipeline_honest.py",
+      "source_sha256": "fd1ee55cb60a7cdf63b90ceb8415f2ccf364312ae1440ae13c7f5d34a1362918",
+      "handoff_sha256": "fd1ee55cb60a7cdf63b90ceb8415f2ccf364312ae1440ae13c7f5d34a1362918",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/core/interactive_post_finder.py",
+      "destination": "scripts/core/interactive_post_finder.py",
+      "source_sha256": "0703dd47e1299a714d75d204642c1e06a5401ef803b1d6f5e483878585ef4fd8",
+      "handoff_sha256": "0703dd47e1299a714d75d204642c1e06a5401ef803b1d6f5e483878585ef4fd8",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/investigation/__init__.py",
+      "destination": "scripts/investigation/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "handoff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/investigation/analyze_downloaded_ids.py",
+      "destination": "scripts/investigation/analyze_downloaded_ids.py",
+      "source_sha256": "3f67458bacab9e1e2526252523c1be4e84460a0bcbf7f66ca7c598f1c7e63661",
+      "handoff_sha256": "3f67458bacab9e1e2526252523c1be4e84460a0bcbf7f66ca7c598f1c7e63661",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/investigation/check_pinecone_count.py",
+      "destination": "scripts/investigation/check_pinecone_count.py",
+      "source_sha256": "da0d5ab9c3b82ede284a3414f7040976a99339ac7101524bf2afc94c4b28e164",
+      "handoff_sha256": "da0d5ab9c3b82ede284a3414f7040976a99339ac7101524bf2afc94c4b28e164",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/investigation/download_complete_pinecone.py",
+      "destination": "scripts/investigation/download_complete_pinecone.py",
+      "source_sha256": "713ac602f59529d072b6f1b0e834293c696d425cc8ad0e71f4f0594636a4d715",
+      "handoff_sha256": "713ac602f59529d072b6f1b0e834293c696d425cc8ad0e71f4f0594636a4d715",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/utilities/__init__.py",
+      "destination": "scripts/utilities/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "handoff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/utilities/score_new_content.py",
+      "destination": "scripts/utilities/score_new_content.py",
+      "source_sha256": "1fa1176c5e3daf587ef4e1e5f5de9304a6330c23d6209e561d972e1653dc72b5",
+      "handoff_sha256": "1fa1176c5e3daf587ef4e1e5f5de9304a6330c23d6209e561d972e1653dc72b5",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/utilities/test_supabase_integration.py",
+      "destination": "scripts/utilities/test_supabase_integration.py",
+      "source_sha256": "42a8a486644342bee069ecbbfa4d274acbcf3def51c74b49175bb35dd22aaa7b",
+      "handoff_sha256": "42a8a486644342bee069ecbbfa4d274acbcf3def51c74b49175bb35dd22aaa7b",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/utilities/tone_calibration_api.py",
+      "destination": "scripts/utilities/tone_calibration_api.py",
+      "source_sha256": "5166ee0296e36b2e0799131d1c0fec0e6b5cb6de4ad3b9a2eb718805945132c5",
+      "handoff_sha256": "5166ee0296e36b2e0799131d1c0fec0e6b5cb6de4ad3b9a2eb718805945132c5",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "scripts/utilities/tone_calibration_system_fixed.py",
+      "destination": "scripts/utilities/tone_calibration_system_fixed.py",
+      "source_sha256": "7297cdee2f6872aee09a49e4c17397429715a1afbb8c65bb0c166f5861c5fbd2",
+      "handoff_sha256": "7297cdee2f6872aee09a49e4c17397429715a1afbb8c65bb0c166f5861c5fbd2",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "spectral_effect.md",
+      "destination": "spectral_effect.md",
+      "source_sha256": "3fc3cc2ed37d058f8ca7877c5b5bc76140200e78f9d4ad773a7e2ea2a6a127d8",
+      "handoff_sha256": "3fc3cc2ed37d058f8ca7877c5b5bc76140200e78f9d4ad773a7e2ea2a6a127d8",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "tests/__init__.py",
+      "destination": "tests/__init__.py",
+      "source_sha256": "60652905c4614e3c6f7da582d1e6093afb46cfcaec8c60c28361b8c9b1169d61",
+      "handoff_sha256": "60652905c4614e3c6f7da582d1e6093afb46cfcaec8c60c28361b8c9b1169d61",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "tests/test_residual_calculator.py",
+      "destination": "tests/test_residual_calculator.py",
+      "source_sha256": "f40ccfeb663596b75ad97477276e2c64ae592fd72c3db0ed53a97ed38413e4e3",
+      "handoff_sha256": "f40ccfeb663596b75ad97477276e2c64ae592fd72c3db0ed53a97ed38413e4e3",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "tests/test_topic_subspace.py",
+      "destination": "tests/test_topic_subspace.py",
+      "source_sha256": "ecb3a51f2b3da0c2ae1cd16439329528d099869740b40202362fcfa7d4148b8e",
+      "handoff_sha256": "ecb3a51f2b3da0c2ae1cd16439329528d099869740b40202362fcfa7d4148b8e",
+      "change": "Unmodified source bytes."
+    },
+    {
+      "source": "todo.txt",
+      "destination": "docs/history/research-notes.txt",
+      "source_sha256": "7f1d988f4c25060d953cf884ed21fff11f3652bade67b3bab6966e458d426a7a",
+      "handoff_sha256": "47d514ee9df20fc5f9f9314ae6e8d629e2ff961a26e45a507ce1dfe2f74078dd",
+      "change": "Relocated historical documentation and added a status notice; original text preserved below it."
+    },
+    {
+      "source": "uv.lock",
+      "destination": "uv.lock",
+      "source_sha256": "5083940d6952d9a5ec8347b151f264ff07073ada5dacced5f6a12c653a8698bf",
+      "handoff_sha256": "5083940d6952d9a5ec8347b151f264ff07073ada5dacced5f6a12c653a8698bf",
+      "change": "Unmodified source bytes."
+    }
+  ],
+  "verification": "python scripts/verify_import.py [--source /path/to/original/unsupervised-learning]"
+}
